@@ -35,6 +35,12 @@ def reset_globals():
     worked2 = False
     return str(worked)+str(worked2)
 
+@app.route('/',methods=['GET'])
+def status_check():
+    global worked
+    global worked2
+    return str(worked)+str(worked2)
+
 @app.route('/youtube/<channel>',methods=['GET'])
 def scrape_youtube(channel):
     global dat
