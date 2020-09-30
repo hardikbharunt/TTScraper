@@ -25,6 +25,16 @@ count = 0
 worked = False
 worked2 = False
 
+@app.route('/resetvar',methods=['GET'])
+def reset_globals():
+    global worked
+    global worked2
+    global val
+    val = {}
+    worked = False
+    worked2 = False
+    return str(worked)+str(worked2)
+
 @app.route('/youtube/<channel>',methods=['GET'])
 def scrape_youtube(channel):
     global dat
