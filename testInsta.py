@@ -4,6 +4,7 @@ import json
 import asyncio
 
 from flask import Flask
+from flask_ngrok import run_with_ngrok
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -11,6 +12,7 @@ from selenium.webdriver.chrome.options import Options
 import time
 
 app = Flask(__name__)
+run_with_ngrok(app)
 
 global worked
 global worked2
@@ -44,14 +46,17 @@ def scrape_youtube(channel):
     global dat
     global worked
     url = 'https://www.youtube.com/c/'+channel+'/videos'
-    curr_url = browser.current_url.lower()
-    if(url.lower() != curr_url):
-        browser.refresh()
-        browser.get(url)
-        time.sleep(1)
-        browser.execute_script('document.body.style.zoom = "25%"')
-        print('zoming out')
-    elif(worked):
+    try:
+        curr_url = browser.current_url.lower()
+        if(url.lower() != curr_url):
+            browser.refresh()
+            browser.get(url)
+            time.sleep(1)
+            browser.execute_script('document.body.style.zoom = "25%"')
+            print('zoming out')
+        elif(worked):
+            return json.dumps(dat)
+    except:
         return json.dumps(dat)
     worked = False
     thumb = browser.find_elements_by_tag_name('ytd-grid-video-renderer')
