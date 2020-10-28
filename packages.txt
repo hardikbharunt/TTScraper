@@ -1,7 +1,4 @@
 requests
 bs4
-json
-asyncio
 flask
 selenium
-time
