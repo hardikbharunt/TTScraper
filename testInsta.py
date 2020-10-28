@@ -4,7 +4,6 @@ import json
 import asyncio
 
 from flask import Flask
-from flask_ngrok import run_with_ngrok
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -12,7 +11,6 @@ from selenium.webdriver.chrome.options import Options
 import time
 
 app = Flask(__name__)
-run_with_ngrok(app)
 
 global worked
 global worked2
