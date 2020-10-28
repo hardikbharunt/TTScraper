@@ -87,7 +87,7 @@ chrome_options = Options()
 chrome_options.add_argument('--disable-infobars')
 chrome_options.add_argument('--disable-dev-shm-usage')
 chrome_options.add_argument('--remote-debugging-port=9222')
-browser = webdriver.Chrome("C:\chromedriver_win32\chromedriver.exe", options=chrome_options)
+browser = webdriver.Chrome(options=chrome_options)
 
 @app.route('/insta/<username>',methods=['GET'])
 def scrape_insta(username):
