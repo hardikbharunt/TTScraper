@@ -44,6 +44,14 @@ def status_check():
     global worked2
     return str(worked)+str(worked2)
 
+global val
+val = {}
+chrome_options = Options()
+chrome_options.add_argument('--disable-infobars')
+chrome_options.add_argument('--disable-dev-shm-usage')
+chrome_options.add_argument('--no-sandbox')
+browser = webdriver.Chrome(options=chrome_options)
+
 @app.route('/youtube/<channel>',methods=['GET'])
 def scrape_youtube(channel):
     global dat
@@ -85,14 +93,6 @@ def scrape_youtube(channel):
     print(dat)
     worked = True
     return json.dumps(dat)
-
-global val
-val = {}
-chrome_options = Options()
-chrome_options.add_argument('--disable-infobars')
-chrome_options.add_argument('--disable-dev-shm-usage')
-chrome_options.add_argument('--no-sandbox')
-browser = webdriver.Chrome(options=chrome_options)
 
 @app.route('/insta/<username>',methods=['GET'])
 def scrape_insta(username):
@@ -149,4 +149,4 @@ def scrape_posts(username):
     
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')
