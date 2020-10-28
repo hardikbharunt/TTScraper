@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup as bs
 import json
 import asyncio
+from pyvirtualdisplay import Display
 
 from flask import Flask
 
@@ -11,6 +12,10 @@ from selenium.webdriver.chrome.options import Options
 import time
 
 app = Flask(__name__)
+
+
+display = Display(visible=0, size=(800, 600))
+display.start()
 
 global worked
 global worked2
