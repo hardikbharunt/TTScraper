@@ -27,6 +27,9 @@ def reset_globals():
     val = {}
     worked = False
     workedi = False
+    requests.get(url+'/resetvar')
+    requests.get('http://159.65.146.229:5000/youtube/TechTatva')
+    requests.get('http://159.65.146.229:5000/insta/mittechtatva')
     return str(worked)+str(worked2)
 
 @app.route('/',methods=['GET'])
@@ -44,7 +47,7 @@ def scrape_youtube(channel):
     resp = requests.get(url+'/youtube/TechTatva')
     dat = json.loads(resp.text)
     worked = True
-    return json.dumps(dat, sort_keys=True, indent=4)
+    return json.dumps(resp, sort_keys=True, indent=4)
 
 @app.route('/insta/<username>',methods=['GET'])
 def scrape_insta(username):
