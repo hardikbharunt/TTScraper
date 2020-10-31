@@ -17,6 +17,8 @@ count = 0
 worked = False
 workedi = False
 
+url = 'https://4a14144614e6.ngrok.io'
+
 @app.route('/resetvar',methods=['GET'])
 def reset_globals():
     global worked
@@ -39,8 +41,8 @@ def scrape_youtube(channel):
     global worked
     if(worked):
         return json.dumps(dat, sort_keys=True, indent=4)
-    resp = requests.get('https://721b4e1f1fe8.ngrok.io/youtube/TechTatva')
-    dat = resp.json()
+    resp = requests.get(url+'/youtube/TechTatva')
+    dat = json.loads(resp.text)
     worked = True
     return json.dumps(dat, sort_keys=True, indent=4)
 
@@ -53,7 +55,7 @@ def scrape_insta(username):
     global workedi
     if(workedi):
        return json.dumps(val)
-    resp = requests.get('https://721b4e1f1fe8.ngrok.io/instaPage')
+    resp = requests.get(url+'/insta/mittechtatva')
     soup = bs(resp.text,"html.parser")
     soup_Ar = soup.find_all('script',{'type':'text/javascript'})
     res = []
@@ -82,4 +84,4 @@ def scrape_posts(username):
     
 
 if __name__ == '__main__':
-    app.run(host='127.1.1.1',port='5000')
+    app.run(host='0.0.0.0',port='5000')
