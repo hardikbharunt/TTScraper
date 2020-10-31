@@ -28,7 +28,7 @@ def reset_globals():
     worked = False
     workedi = False
     requests.get(url+'/resetvar')
-    requests.get('http://159.65.146.229:5000/youtube/TechTatva')
+    #requests.get('http://159.65.146.229:5000/youtube/TechTatva')
     requests.get('http://159.65.146.229:5000/insta/mittechtatva')
     return str(worked)+str(worked2)
 
